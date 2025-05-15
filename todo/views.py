@@ -4,10 +4,12 @@ from .models import Todo
 
 # Create your views here.
 def todo_list(request):
+    user = request.user
     todos = Todo.objects.all()
     # get(唯一值，ex: id，使用時須注意前端、物件型態); filter(多數，必為容器型態)
     # todos = Todo.objects.filter(important=True)
     result = {
+        "user": user,
         "todos": todos,
     }
     return render(request, "todo/todo.html", result)

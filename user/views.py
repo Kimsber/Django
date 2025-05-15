@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 
 def user_login(request):
     message = ""
-    user_name = ""
+    username = ""
     if request.method == "POST":
         username = request.POST.get("username")
         password = request.POST.get("password")
@@ -24,6 +24,11 @@ def user_login(request):
     return render(
         request, "user/login.html", {"message": message, "username": username}
     )
+
+
+def user_logout(request):
+    logout(request)
+    return redirect("todo")
 
 
 # Create your views here.
